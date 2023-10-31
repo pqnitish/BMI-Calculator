@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BMI Calculator</title>
+  </head>
+  <body>
+    <h1>BMI Calculator</h1>
+    <div>
+      <label for="weight">Enter Weight (in kg):</label>
+      <input
+        type="number"
+        id="weight"
+        step="0.01"
+        placeholder="Enter weight in kg"
+      />
+    </div><br>
+    <div>
+      <label for="height">Enter Height (in meters):</label>
+      <input
+        type="number"
+        id="height"
+        step="0.01"
+        placeholder="Enter height in meters"
+      />
+    </div>
+    <button id="calculate">Calculate BMI</button><br>
+    <div id="result"></div>
+
+    <script>
+     let btn = document.getElementById("calculate");
+     let result = document.getElementById("result");
+     btn.addEventListener("click",function(){
+        let weight = parseFloat(document.getElementById("weight").value);
+            let height = parseFloat(document.getElementById("height").value);
+        if(isNaN(weight) || isNaN(height)){
+            result.textContent ="please enter valid weight and height";
+        }else{
+            let bmi = weight /(height*height);
+            //console.log(bmi.toFixed(2))
+            let resultText ;
+            if(bmi<=18.4){
+                resultText="UnderWeight";
+            }else if(bmi >= 18.5 && bmi <= 24.9){
+                resultText="Normal Weight";
+            }else if(bmi >= 25 && bmi <= 29.9){
+                resultText="Overweight ";
+            }else{
+                resultText="Obese";
+            }
+            result.textContent =`your BMI is ${bmi.toFixed(2)} which means You are ${resultText}`
+        }
+
+     })
+    </script>
+  </body>
+</html>
